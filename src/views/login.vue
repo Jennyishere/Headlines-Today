@@ -34,9 +34,12 @@
 // 首先按钮的功能：输入文本，有value，type，placeholder等属性，有input，blur等常用方法
 // 通过props属性接收父组件传递的值如正则，添加input事件对值进行判断添加不同的样式，通过双向绑定实现数据影响元素和元素影响数据
 // 添加失焦事件并进行正则判断，使用vant的轻提示给用户提示
+// 登录：设置全局的 axios 默认值，封装api接口文件，登录成功后跳转个人中心
+// 错误日志：Object(...) is not a function 引入有问题
 <script>
 import mybutton from '../components/mybutton.vue';
 import myinput from '../components/myinput.vue';
+import { login } from '../apis/user.js'
 export default {
   data() {
     return {
@@ -51,8 +54,12 @@ export default {
   },
   methods: {
     //登录
-    login() {
-      console.log('login');
+   async login() {
+      // console.log('login');
+      let res = await login(this.users) 
+      // console.log(res);
+      if(res.data.message == '登录成功') this.$router.push({name: 'Personal'})
+      
     },
     //输入框变化 直接交给v-model进行双向绑定
   // handleInput(value) {
