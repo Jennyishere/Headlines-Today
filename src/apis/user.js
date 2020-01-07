@@ -8,3 +8,9 @@ export const login = (data)=>{
         data
     })
 }
+
+export const getUserById = (id)=> {
+    return axios({
+        url:`/user/${id}`,
+    })
+}
