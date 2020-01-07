@@ -33,10 +33,6 @@
       <mybutton class="btn">退出</mybutton>
   </div>
 </template>
-// 实现思路： 静态可以使用封装cell 因为后面的编辑页面也有使用 slot
-// 获取路由上的id 发送请求渲染数据 
-// 安全问题考虑：由于涉及客户登录，所以要在路由设置导航守卫，并在axios使用拦截器设置token
-// 点击头部跳转用户编辑页面
 
 <script>
 import pcell from '../components/pcell.vue'
