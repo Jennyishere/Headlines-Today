@@ -28,7 +28,7 @@
 <script>
 import mybutton from '../components/mybutton.vue';
 import myinput from '../components/myinput.vue';
-import { login } from '../apis/user.js'
+import { Register } from '../apis/user.js'
 export default {
   data() {
     return {
@@ -43,9 +43,16 @@ export default {
     mybutton, myinput
   },
   methods: {
-      register() {
-          console.log(132);
-          
+    async register() {
+          let res = await Register(this.users)
+        //   console.log(res);
+          if(res.data.message == '注册成功') {
+              this.$router.push({name: 'Login'})
+              this.$toast.success(res.data.message)
+          }else {
+              this.$toast.fail(res.data.message)
+
+          }
       }
   }
 };
