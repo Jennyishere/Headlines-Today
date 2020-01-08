@@ -30,30 +30,16 @@
       <van-field placeholder="请输入新密码" required ref="newPsw"/>
     </van-dialog>
     
-    <pcell>
+    <pcell @click='sexshow=!sexshow'>
       <span slot="left">性别</span>
       <span slot="right">
-        {{user.gender}}
+        {{user.gender==1?'男':'女'}}
         <van-icon name="arrow" />
       </span>
     </pcell>
-    <van-field
-  readonly
-  clickable
-  label="性别"
-  :value="value"
-  placeholder="选性别"
-  @click="showPicker = true"
-/>
-
-<van-popup v-model="showPicker" position="bottom">
-  <van-picker
-    show-toolbar
-    :columns="columns"
-    @cancel="showPicker = false"
-    @confirm="onConfirm"
-  />
-</van-popup>
+  <van-dialog v-model="sexshow" title="修改性别" show-cancel-button @confirm="updateGender"> 
+      <van-picker :columns="['女','男']" @change="onChange" :default-index="user.gender"/>
+    </van-dialog>
   </div>
 </template>
 静态页面，引用vant组件及自己封装的组件组成
@@ -65,7 +51,7 @@
 需要添加文件上传api和用户编辑api
 3、点击昵称，引入vant的Dialog 弹出框和Field 输入框组件，监听确定键，完成昵称的修改，且实现预览效果
 4、点击修改密码，引入vant的Dialog 弹出框和Field 输入框组件，使用该组件的一个beforeclose属性，判断①与原密码是否一致，②新密码是否符合正则表达式规则，监听确定键，完成修改
-5、点击修改性别，引入vant的Picker组件，监听用户选择，确认后完成修改
+5、点击修改性别，引入vant的Picker组件，选中原本选择，监听用户选择，确认后完成修改
 <script>
 import pcell from '../components/pcell.vue';
 import { upload } from '../apis/upload.js';
@@ -75,7 +61,9 @@ export default {
     return {
       user: {},
       nickshow: false,
-      pswshow: false
+      pswshow: false,
+      sexshow: false,
+      gender:''
     };
   },
   components: {
@@ -141,8 +129,27 @@ export default {
           this.$toast.fail('请输入3-16位密码')
         }
       }
+    },
+  onChange(picker, value, index) {
+      // this.$toast(`当前值：${value}, 当前索引：${index}`);
+      this.gender = index;
+      // console.log(this.gender);
+      
+    },
+  async updateGender() {
+      let res = await updateUserById(this.$route.params.id,{
+        'gender': this.gender
+      } )
+      console.log(res);
+      if(res.data.message == '修改成功') {
+        this.user.gender = this.gender;
+      }else {
+        this.$$toast.fail(res.data.message)
+      }
     }
-  }
+  
+  },
+  
 };
 </script>
 
