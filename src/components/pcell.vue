@@ -1,5 +1,5 @@
 <template>
-  <div class="pcell">
+  <div class="pcell" @click="handleClick">
       <div>
           <slot name="left"></slot>
       </div>
@@ -11,7 +11,11 @@
 
 <script>
 export default {
-
+methods: {
+    handleClick(event) {
+        this.$emit('click',event)
+    }
+}
 }
 </script>
 
