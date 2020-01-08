@@ -42,16 +42,7 @@
     </van-dialog>
   </div>
 </template>
-静态页面，引用vant组件及自己封装的组件组成
-业务处理
-功能：1、左箭头返回个人中心 √ 
-渲染源数据
-2、点击头像，可以进行头像的修改
-首先，监听确定键，完成图片的上传，且通过id完成用户资料的修改，并且实现预览效果
-需要添加文件上传api和用户编辑api
-3、点击昵称，引入vant的Dialog 弹出框和Field 输入框组件，监听确定键，完成昵称的修改，且实现预览效果
-4、点击修改密码，引入vant的Dialog 弹出框和Field 输入框组件，使用该组件的一个beforeclose属性，判断①与原密码是否一致，②新密码是否符合正则表达式规则，监听确定键，完成修改
-5、点击修改性别，引入vant的Picker组件，选中原本选择，监听用户选择，确认后完成修改
+
 <script>
 import pcell from '../components/pcell.vue';
 import { upload } from '../apis/upload.js';

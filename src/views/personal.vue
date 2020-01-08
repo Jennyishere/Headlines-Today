@@ -30,7 +30,7 @@
           <span slot="right"><van-icon name="arrow" /></span>
         </pcell>
       </div>
-      <mybutton class="btn">退出</mybutton>
+      <mybutton class="btn" @click="quit">退出</mybutton>
   </div>
 </template>
 
@@ -55,6 +55,15 @@ export default {
     console.log(res);
     if(res.data.message == '获取成功') this.users = res.data.data
     this.users.head_img = res.data.data.head_img
+  },
+  methods: {
+    quit() {
+      // 退出 清空本地 token 跳转登录页
+      localStorage.removeItem('ht_token')
+      this.$router.push({
+        path: '/login'
+      })
+    }
   }
 }
 </script>

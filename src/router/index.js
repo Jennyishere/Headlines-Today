@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+Vue.use(VueRouter)
 import Login from '../views/login.vue'
 import Personal from '../views/personal.vue'
 import editPersonal from '../views/editPersonal.vue'
-Vue.use(VueRouter)
+import Index from '../views/index.vue'
+import Register from '../views/register.vue'
 
 const routes = [
+  {
+    name: 'Index',
+    path: '/',
+    component: Index
+  },
   {
     name: 'Login',
     path: '/login',
     component: Login
+  },
+  {
+    name: 'Register',
+    path: '/register',
+    component: Register
   },
   {
     name: 'Personal',
