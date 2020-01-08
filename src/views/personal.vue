@@ -54,7 +54,7 @@ export default {
     let res = await getUserById(id)
     console.log(res);
     if(res.data.message == '获取成功') this.users = res.data.data
-    this.users.head_img = 'http://localhost:3000'+ res.data.data.head_img
+    this.users.head_img = res.data.data.head_img
   }
 }
 </script>

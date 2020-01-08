@@ -1,9 +1,9 @@
 <template>
   <div class="login">
     <div class="container">
-      <div class="close">
+      <!-- <div class="close">
         <span class="iconfont iconicon-test"></span>
-      </div>
+      </div> -->
       <div class="logo">
         <van-icon name="new" class="hot"/>
       </div>
