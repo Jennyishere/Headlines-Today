@@ -9,7 +9,6 @@ import Register from '../views/register.vue'
 
 const routes = [
   {
-    name: 'Index',
     path: '/',
     redirect:{path: '/index'}
   },

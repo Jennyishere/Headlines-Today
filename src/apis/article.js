@@ -8,3 +8,10 @@ export const getCategory = ()=>{
         
     })
 }
+export const getAllArticle = (params)=>{
+    //需要return出去 这样那边才能拿到一个promise
+    return axios({
+        url:'/post',
+        params
+    })
+}
