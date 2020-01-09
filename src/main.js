@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import { Icon, Toast,NavBar,Uploader,Dialog,Field,Picker, Tab, Tabs,List } from 'vant';
+import { Icon, Toast,NavBar,Uploader,Dialog,Field,Picker, Tab, Tabs,List,PullRefresh } from 'vant';
 
 Vue.use(Icon)
 .use(Toast)
@@ -12,7 +12,8 @@ Vue.use(Icon)
 .use(Picker)
 .use(Tab)
 .use(Tabs)
-.use(List);
+.use(List)
+.use(PullRefresh);
 Vue.config.productionTip = false;
 
 new Vue({
