@@ -6,6 +6,7 @@ import Personal from '../views/personal.vue'
 import editPersonal from '../views/editPersonal.vue'
 import Index from '../views/index.vue'
 import Register from '../views/register.vue'
+import articleDetail from '../views/articleDetail.vue'
 
 const routes = [
   {
@@ -32,7 +33,11 @@ const routes = [
     path: '/personal/:id',
     component: Personal
   },
-  
+  {
+    name: 'articleDetail',
+    path: '/articleDetail/:id',
+    component: articleDetail
+  },
   {
     name: 'editPersonal',
     path: '/editPersonal/:id',
@@ -47,7 +52,7 @@ router.beforeEach((to, from, next) => {
   // ...
   // console.log(to.path);
   let token = localStorage.getItem('ht_token')
-  if(to.path.indexOf('/login') || to.path.indexOf('/index')) {
+  if(to.path.indexOf('/index')==0 || to.path.indexOf('/login')==0) {
     next()
   }else {
     if (token) {

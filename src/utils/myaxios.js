@@ -8,8 +8,8 @@ export default axios
 axios.interceptors.request.use(function (config) {
     // 在发送请求之前设置请求头 加上token值
     // console.log(config);
-
-    config.headers.Authorization = localStorage.getItem('ht_token')
+    let token = localStorage.getItem('ht_token')
+    if(token) config.headers.Authorization = token
     return config;
 }, function (error) {
     // 对请求错误做些什么

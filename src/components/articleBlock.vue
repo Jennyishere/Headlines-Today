@@ -1,5 +1,5 @@
 <template>
-  <div class="articleBlockOne" v-if="post.type == 1 && post.cover.length <= 1">
+  <div class="articleBlockOne" v-if="post.type == 1 && post.cover.length <= 1" @click="$router.push({path:`articleDetail/${post.id}`})">
     <div class="left">
       <p>{{post.title}}</p>
       <p>
@@ -11,7 +11,7 @@
         <img :src="post.cover[0].url" alt="">
     </div>
   </div>
-  <div class="articleBlockVideo" v-else-if="post.type == 2">
+  <div class="articleBlockVideo" v-else-if="post.type == 2" @click="$router.push({path:`articleDetail/${post.id}`})">
       <p>{{post.title}}</p>
         <img :src="post.cover[0].url" alt="">
         <van-icon name="play-circle-o" class="play"/>
@@ -20,7 +20,7 @@
         <span>{{post.comment_length}}跟帖</span>
     </div>
   </div>
-    <div class="articleBlockThree" v-else-if="post.type == 1 && post.cover.length > 1">
+    <div class="articleBlockThree" v-else-if="post.type == 1 && post.cover.length > 1" @click="$router.push({path:`articleDetail/${post.id}`})">
       <p>{{post.title}}</p>
         <div class="imgs">
             <img :src="img.url" v-for="img in post.cover" :key="img.id" alt="">
