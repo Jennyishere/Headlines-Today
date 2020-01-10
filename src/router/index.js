@@ -7,6 +7,7 @@ import editPersonal from '../views/editPersonal.vue'
 import Index from '../views/index.vue'
 import Register from '../views/register.vue'
 import articleDetail from '../views/articleDetail.vue'
+import Comments from '../views/comments.vue'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     name: 'Personal',
     path: '/personal/:id',
     component: Personal
+  },
+  {
+    name: 'comments',
+    path: '/comments/:id',
+    component: Comments
   },
   {
     name: 'articleDetail',

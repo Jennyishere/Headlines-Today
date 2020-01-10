@@ -6,21 +6,21 @@
         <van-icon name="new" class="hot" />
       </div>
       <div class="right">
-        <span>关注</span>
+        <span @click="handleStar" :class="{active:articleDetail.has_star}">{{articleDetail.has_star?'已关注':'关注'}}</span>
       </div>
     </div>
     <div class="content">
-      <h3 class="content_head">标题</h3>
+      <h3 class="content_head">{{articleDetail.title}}</h3>
       <div class="auther_date">
-        <span>火星人</span>
-        <span>2019</span>
+        <span>{{articleDetail.user.nickname}}</span>
+        <span>{{articleDetail.create_date}}</span>
       </div>
       <div
-        class="content_content"
-      >文章内容哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或或</div>
+        class="content_content" v-html="articleDetail.content"
+      ></div>
       <div class="content_like">
-        <span class="like">
-          <van-icon name="good-job-o" />点赞
+        <span>
+          <van-icon name="good-job-o" :class='["like",{active:articleDetail.has_like}]'/>点赞
         </span>
         <span>
           <van-icon name="chat" class="wechat" />微信
@@ -42,12 +42,43 @@
       <div class="comment_content">
           说得很有道理
       </div>
+      <div class="more">
+        <span>更多跟帖</span>
+      </div>
     </div>
+   <commentFooter :post='articleDetail'></commentFooter>
   </div>
 </template>
-
+// todo
+1、根据id拿到文章详情 渲染页面
+2、封装底部评论栏
+3、关注 √
+4、点赞√
+5、点击评论跳转
 <script>
-export default {};
+import { getArticleDetail } from '../apis/article.js'
+import commentFooter from '../components/commentFooter.vue'
+export default {
+  data() {
+    return {
+      articleDetail:''
+    }
+  },
+  components: {
+    commentFooter
+  },
+ async mounted() {
+    let res = await getArticleDetail(this.$route.params.id) 
+    console.log(res);
+    this.articleDetail = res.data.data
+    
+  },
+  methods: {
+    handleStar() {
+
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
@@ -83,6 +114,9 @@ body {
   }
   .content_content {
     margin-top: 10px;
+    img {
+      width: 100vw;
+    }
   }
   .content_like {
     margin-top: 20px;
@@ -93,9 +127,15 @@ body {
       padding: 3px 8px;
       border: 1px solid #ccc;
       border-radius: 10px;
+      
       .wechat {
         color: #19ac18;
       }
+    /deep/.like {
+        &.active {
+          color: #d43d3d;
+        }
+    }
     }
   }
 }
@@ -105,6 +145,7 @@ body {
     .bestcommenter {
         display: flex;
         justify-content: space-around;
+        
         img {
             width: 50/360*100vw;
             border-radius: 50%;
@@ -115,5 +156,17 @@ body {
         }
        
     }
+    .comment_content {
+         text-align: left;
+         padding: 5px;
+       }
+       .more {
+         span {
+           padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 20px;
+         }
+       }
 }
+
 </style>
